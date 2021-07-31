@@ -1,0 +1,95 @@
+$(".header").text("Botx - ระบบทำงานไว");
+$("#ShopResult").css("overflow-y","unset"); $("#ShopResult").html(`
+
+<div class="card">
+    <div class="card-body">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <form class="pb-5">
+                        <h1 style="color: red">
+                            สถานะ : <span id="status"></span>
+                        </h1>
+                        <h2 style="color: gold">
+                            ความไวตอนนี้ :
+                            <span id="speed"></span> มิลลิวินาที
+                        </h2>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">ความไว</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="exampleInputEmail1"
+                                placeholder="ใส่ความไว 1000 = 1 วิ"
+                            />
+                        </div>
+
+                        <button
+                            type="button"
+                            class="btn"
+                            style="background-color: dodgerblue"
+                            onclick="updatex()"
+                        >
+                            อัพเดทตั้งค่า
+                        </button>
+                        <button
+                            type="button"
+                            class="btn"
+                            style="background-color: green"
+                            onclick="onx()"
+                        >
+                            เปิด
+                        </button>
+                        <button
+                            type="button"
+                            class="btn"
+                            style="background-color: red"
+                            onclick="offx()"
+                        >
+                            ปิด
+                        </button>
+                        <div class="form-group">
+                            <br />
+                            <label for="exampleFormControlTextarea1"
+                                >JS Code</label
+                            >
+                            <textarea
+                                class="form-control"
+                                id="exampleFormControlTextarea1"
+                                rows="3"
+                                style="margin: 0px; height: 262px; width: 736px"
+                            ></textarea>
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: red"
+                                onclick="unloadx()"
+                            >
+                                ถอดการติดตั้ง (unload)
+                            </button>
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: green"
+                                onclick="loadx()"
+                            >
+                                Run Code
+                            </button>
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: blue"
+                                onclick="closex()"
+                            >
+                                Close Dev
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+`)
