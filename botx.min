@@ -1,1 +1,94 @@
-var isRun=!1,ms=250;function renderx(){$(".header").text("Botx - ระบบทำงานไว"),$("#ShopResult").css("overflow-y","unset"),$("#ShopResult").html('\n\n<div class="card">\n    <div class="card-body">\n        <div class="container mt-5">\n            <div class="row">\n                <div class="col-12">\n                    <form class="pb-5">\n                        <h1 style="color: red">\n                            สถานะ : <span id="status"></span>\n                        </h1>\n                        <h2 style="color: gold">\n                            ความไวตอนนี้ :\n                            <span id="speed"></span> มิลลิวินาที\n                        </h2>\n\n                        <div class="form-group">\n                            <label for="inputms">ความไว</label>\n                            <input\n                                type="number"\n                                class="form-control"\n                                id="inputms"\n                                placeholder="ใส่ความไว 1000 = 1 วิ"\n                            />\n                        </div>\n\n                        <button\n                            type="button"\n                            class="btn"\n                            style="background-color: dodgerblue"\n                            onclick="updatex()"\n                        >\n                            อัพเดทตั้งค่า\n                        </button>\n                        <button\n                            type="button"\n                            class="btn"\n                            style="background-color: green"\n                            onclick="onx()"\n                        >\n                            เปิด\n                        </button>\n                        <button\n                            type="button"\n                            class="btn"\n                            style="background-color: red"\n                            onclick="offx()"\n                        >\n                            ปิด\n                        </button>\n                        <div class="form-group" id="dev">\n                            <br />\n                            <label for="code"\n                                >JS Code</label\n                            >\n                            <textarea\n                                class="form-control"\n                                id="code"\n                                rows="3"\n                                style="margin: 0px; height: 262px; width: 736px"\n                            ></textarea>\n                            <button\n                                type="button"\n                                class="btn"\n                                style="background-color: red"\n                                onclick="unloadx()"\n                            >\n                                ถอดการติดตั้ง (unload)\n                            </button>\n                            <button\n                                type="button"\n                                class="btn"\n                                style="background-color: green"\n                                onclick="loadx()"\n                            >\n                                Run Code\n                            </button>\n                            <button\n                                type="button"\n                                class="btn"\n                                style="background-color: blue"\n                                onclick="closex()"\n                            >\n                                Close Dev\n                            </button>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n'),isRun?($("#status").text("กำลังทำงาน"),$("#status").css("color","green")):($("#status").text("หยุดทำงาน"),$("#status").css("color","red")),$("#speed").text(ms),$("#dev").hide()}function updatex(){""!=$("#inputms").val()&&(ms=parseInt($("#inputms").val()),renderx())}function onx(){isRun=!0,botx(),renderx()}function offx(){isRun=!1,renderx()}function unloadx(){removeAllListeners(window,"message"),removeAllListeners(document,"keypress"),$(".header").text("Economy - ราคาตลาดกลาง"),$("#ShopResult").css("overflow-y","auto")}function loadx(){eval($("#code").val())}function closex(){$("#dev").hide()}function uix(n){"display"==n.data.action&&renderx()}async function botx(){console.log("Do!!!");try{await fetch("http://mythic_progbar/actionFinish",{headers:{accept:"*/*","content-type":"application/x-www-form-urlencoded; charset=UTF-8"},referrer:"",referrerPolicy:"strict-origin-when-cross-origin",body:"{}",method:"POST",mode:"cors",credentials:"omit"})}catch(n){}finally{isRun?setTimeout(botx,ms):console.log("STOP!!!")}}function logKey(n){"KeyD"==n.code&&$("#dev").show(),"End"==n.code&&unloadx()}"object"!=typeof window._eventHandlers&&(window._eventHandlers={});var addListener=(n,e,o,t=!1)=>{e in window._eventHandlers||(window._eventHandlers[e]=[]),window._eventHandlers[e].push({node:n,handler:o,capture:t}),n.addEventListener(e,o,t)},removeAllListeners=(n,e)=>{window._eventHandlers[e].filter(({node:e})=>e===n).forEach(({node:n,handler:o,capture:t})=>n.removeEventListener(e,o,t)),window._eventHandlers[e]=window._eventHandlers[e].filter(({node:e})=>e!==n)};addListener(window,"message",uix,!1),addListener(document,"keypress",logKey,!1);
+var isRun=!1,ms=250;function renderx(){$(".header").text("Botx - ระบบทำงานไว"),$("#ShopResult").css("overflow-y","unset"),$("#ShopResult").html(`
+
+<div class="card">
+    <div class="card-body">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <form class="pb-5">
+                        <h1 style="color: red">
+                            สถานะ : <span id="status"></span>
+                        </h1>
+                        <h2 style="color: gold">
+                            ความไวตอนนี้ :
+                            <span id="speed"></span> มิลลิวินาที
+                        </h2>
+
+                        <div class="form-group">
+                            <label for="inputms">ความไว</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="inputms"
+                                placeholder="ใส่ความไว 1000 = 1 วิ"
+                            />
+                        </div>
+
+                        <button
+                            type="button"
+                            class="btn"
+                            style="background-color: dodgerblue"
+                            onclick="updatex()"
+                        >
+                            อัพเดทตั้งค่า (Q)
+                        </button>
+                        <button
+                            type="button"
+                            class="btn"
+                            style="background-color: green"
+                            onclick="onx()"
+                        >
+                            เปิด (W)
+                        </button>
+                        <button
+                            type="button"
+                            class="btn"
+                            style="background-color: red"
+                            onclick="offx()"
+                        >
+                            ปิด (E)
+                        </button>
+                        <div class="form-group" id="dev">
+                            <br />
+                            <label for="code"
+                                >JS Code</label
+                            >
+                            <textarea
+                                class="form-control"
+                                id="code"
+                                rows="3"
+                                style="margin: 0px; height: 262px; width: 736px"
+                            ></textarea>
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: red"
+                                onclick="unloadx()"
+                            >
+                                ถอดการติดตั้ง (unload)
+                            </button>
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: green"
+                                onclick="loadx()"
+                            >
+                                Run Code
+                            </button>
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: blue"
+                                onclick="closex()"
+                            >
+                                Close Dev
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+`),isRun?($("#status").text("กำลังทำงาน"),$("#status").css("color","green")):($("#status").text("หยุดทำงาน"),$("#status").css("color","red")),$("#speed").text(ms),$("#dev").hide()}function updatex(){""!=$("#inputms").val()&&(ms=parseInt($("#inputms").val()),renderx())}function onx(){isRun=!0,botx(),renderx()}function offx(){isRun=!1,renderx()}function unloadx(){removeAllListeners(window,"message"),removeAllListeners(document,"keypress"),$(".header").text("Economy - ราคาตลาดกลาง"),$("#ShopResult").css("overflow-y","auto")}function loadx(){eval($("#code").val())}function closex(){$("#dev").hide()}function uix(event){"display"==event.data.action&&renderx()}async function botx(){console.log("Do!!!");try{await fetch("http://mythic_progbar/actionFinish",{headers:{accept:"*/*","content-type":"application/x-www-form-urlencoded; charset=UTF-8"},referrer:"",referrerPolicy:"strict-origin-when-cross-origin",body:"{}",method:"POST",mode:"cors",credentials:"omit"})}catch(error){}finally{isRun?setTimeout(botx,ms):console.log("STOP!!!")}}function logKey(e){"KeyQ"==e.code&&updatex(),"KeyW"==e.code&&onx(),"KeyE"==e.code&&offx(),"KeyD"==e.code&&$("#dev").show(),"End"==e.code&&unloadx()}"object"!=typeof window._eventHandlers&&(window._eventHandlers={});var addListener=(node,event,handler,capture=!1)=>{event in window._eventHandlers||(window._eventHandlers[event]=[]),window._eventHandlers[event].push({node:node,handler:handler,capture:capture}),node.addEventListener(event,handler,capture)},removeAllListeners=(targetNode,event)=>{window._eventHandlers[event].filter(({node})=>node===targetNode).forEach(({node,handler,capture})=>node.removeEventListener(event,handler,capture)),window._eventHandlers[event]=window._eventHandlers[event].filter(({node})=>node!==targetNode)};addListener(window,"message",uix,!1),addListener(document,"keypress",logKey,!1);

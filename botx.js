@@ -37,7 +37,7 @@ function renderx() {
                             style="background-color: dodgerblue"
                             onclick="updatex()"
                         >
-                            อัพเดทตั้งค่า
+                            อัพเดทตั้งค่า (Q)
                         </button>
                         <button
                             type="button"
@@ -45,7 +45,7 @@ function renderx() {
                             style="background-color: green"
                             onclick="onx()"
                         >
-                            เปิด
+                            เปิด (W)
                         </button>
                         <button
                             type="button"
@@ -53,7 +53,7 @@ function renderx() {
                             style="background-color: red"
                             onclick="offx()"
                         >
-                            ปิด
+                            ปิด (E)
                         </button>
                         <div class="form-group" id="dev">
                             <br />
@@ -174,6 +174,16 @@ async function botx() {
 }
 
 function logKey(e) {
+    if (e.code == "KeyQ") {
+        updatex()
+    }
+    if (e.code == "KeyW") {
+        onx()
+    }
+    if (e.code == "KeyE") {
+        offx()
+    }
+
     if (e.code == "KeyD") {
         $("#dev").show()
     }
