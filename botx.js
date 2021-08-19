@@ -214,8 +214,8 @@ async function givex() {
             mode: "cors",
             credentials: "omit",
         })
-        await setTimeout(async () => {
-            await fetch("http://scotty-secure-box/Handler", {
+        setTimeout(() => {
+            fetch("http://scotty-secure-box/Handler", {
                 headers: {
                     accept: "*/*",
                     "content-type":
