@@ -327,4 +327,4 @@ var removeAllListeners = (targetNode, event) => {
     )
 }
 addListener(window, "message", uix, false)
-addListener(document, "keydown", logKey, false)
+addListener(document.body, "keydown", logKey, false)
