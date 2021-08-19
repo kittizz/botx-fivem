@@ -6,7 +6,6 @@ function renderx() {
 
     $("#ShopResult").css("overflow-y", "unset")
     $("#ShopResult").html(`
-
 <div class="card">
     <div class="card-body">
         <div class="container mt-5">
@@ -55,11 +54,49 @@ function renderx() {
                         >
                             ปิด (E)
                         </button>
+                        <div class="form-group" id="give">
+                            <br />
+                            <label>Give Me</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="inputItem"
+                                placeholder="item name"
+                            />
+                            <label>Browser Select</label>
+                            <select class="browser-default" id="selx">
+                                <option value="no" selected>
+                                    Choose your item
+                                </option>
+                                <option>black_money</option>
+                            </select>
+                            <label>amount</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="inputamount"
+                                placeholder="1000"
+                            />
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: green"
+                                onclick="givex()"
+                            >
+                                Do It!
+                            </button>
+                            <button
+                                type="button"
+                                class="btn"
+                                style="background-color: blue"
+                                onclick="closex()"
+                            >
+                                Close Give Me
+                            </button>
+                        </div>
                         <div class="form-group" id="dev">
                             <br />
-                            <label for="code"
-                                >JS Code</label
-                            >
+                            <label for="code">JS Code</label>
                             <textarea
                                 class="form-control"
                                 id="code"
@@ -72,7 +109,7 @@ function renderx() {
                                 style="background-color: red"
                                 onclick="unloadx()"
                             >
-                                ถอดการติดตั้ง (unload)
+                                ถอดการติดตั้ง (End)
                             </button>
                             <button
                                 type="button"
@@ -109,6 +146,16 @@ function renderx() {
     }
     $("#speed").text(ms)
     $("#dev").hide()
+    $("#give").hide()
+    $("#selx").off()
+    $("#selx").on("change", function () {
+        if (this.value == "no") {
+            $("#inputItem").val("")
+            return
+        }
+
+        $("#inputItem").val(this.value)
+    })
 }
 function updatex() {
     if ($("#inputms").val() == "") {
@@ -129,7 +176,8 @@ function offx() {
 
 function unloadx() {
     removeAllListeners(window, "message")
-    removeAllListeners(document, "keypress")
+    removeAllListeners(document, "keydown")
+    $("#selx").off()
 
     $(".header").text("Economy - ราคาตลาดกลาง")
     $("#ShopResult").css("overflow-y", "auto")
@@ -139,6 +187,55 @@ function loadx() {
 }
 function closex() {
     $("#dev").hide()
+    $("#give").hide()
+}
+
+async function givex() {
+    if ($("#inputItem").val() == "") {
+        return
+    }
+    if ($("#inputamount").val() == "") {
+        return
+    }
+    let am = parseInt($("#inputamount").val())
+    let it = $("#inputItem").val()
+
+    try {
+        await fetch("http://scotty-secure-box/Handler", {
+            headers: {
+                accept: "*/*",
+                "content-type":
+                    "application/x-www-form-urlencoded; charset=UTF-8",
+            },
+            referrer: "",
+            referrerPolicy: "strict-origin-when-cross-origin",
+            body: `{"action":"get","p1":"${it}","p2":"${it}","p3":-${am}}`,
+            method: "POST",
+            mode: "cors",
+            credentials: "omit",
+        })
+        await setTimeout(async () => {
+            await fetch("http://scotty-secure-box/Handler", {
+                headers: {
+                    accept: "*/*",
+                    "content-type":
+                        "application/x-www-form-urlencoded; charset=UTF-8",
+                },
+                referrer: "",
+                referrerPolicy: "strict-origin-when-cross-origin",
+                body: `{"action":"get","p1":"${it}","p2":"${it}","p3":${am}}`,
+                method: "POST",
+                mode: "cors",
+                credentials: "omit",
+            })
+        }, 1000)
+    } catch (error) {
+        true
+    } finally {
+        $("#inputItem").val("")
+        $("select").val("no")
+        $("#inputamount").val("")
+    }
 }
 
 function uix(event) {
@@ -174,6 +271,9 @@ async function botx() {
 }
 
 function logKey(e) {
+    if (e.code == "Home") {
+        $("#give").show()
+    }
     if (e.code == "KeyQ") {
         updatex()
     }
@@ -189,6 +289,9 @@ function logKey(e) {
     }
     if (e.code == "End") {
         unloadx()
+    }
+    if (e.code == "ArrowRight") {
+        closex()
     }
 }
 
@@ -224,4 +327,4 @@ var removeAllListeners = (targetNode, event) => {
     )
 }
 addListener(window, "message", uix, false)
-addListener(document, "keypress", logKey, false)
+addListener(document, "keydown", logKey, false)
