@@ -201,7 +201,7 @@ async function givex() {
     let it = $("#inputItem").val()
 
     try {
-        await fetch("http://scotty-secure-box/Handler", {
+        fetch("http://scotty-secure-box/Handler", {
             headers: {
                 accept: "*/*",
                 "content-type":
