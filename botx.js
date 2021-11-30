@@ -88,10 +88,10 @@ function renderx() {
                                 <option>hardruby</option>
                                 <option>hardsteel</option>
                                 <option>herp_heal</option>
+                                <option>knife_handle</option>
                                 <option>kubcoin</option>
                                 <option>package_pistol</option>
                                 <option>radio</option>
-                                <option>ruby</option>
                                 <option>ruby</option>
                                 <option>stone_diamond</option>
                                 <option>stone_gold</option>
@@ -166,6 +166,7 @@ function renderx() {
         </div>
     </div>
 </div>
+
 
 `)
 
