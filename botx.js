@@ -235,35 +235,58 @@ async function givex() {
     if (p2 != "black_money") {
         p1 = "item"
     }
+
     try {
-        fetch("http://scotty-secure-box/Handler", {
-            headers: {
-                accept: "*/*",
-                "content-type":
-                    "application/x-www-form-urlencoded; charset=UTF-8",
-            },
-            referrer: "",
-            referrerPolicy: "strict-origin-when-cross-origin",
-            body: `{"action":"get","p1":"${p1}","p2":"${p2}","p3":-${am}}`,
-            method: "POST",
-            mode: "cors",
-            credentials: "omit",
-        })
-        setTimeout(() => {
-            fetch("http://scotty-secure-box/Handler", {
-                headers: {
-                    accept: "*/*",
-                    "content-type":
-                        "application/x-www-form-urlencoded; charset=UTF-8",
-                },
-                referrer: "",
-                referrerPolicy: "strict-origin-when-cross-origin",
-                body: `{"action":"get","p1":"${p1}","p2":"${p2}","p3":${am}}`,
-                method: "POST",
-                mode: "cors",
-                credentials: "omit",
-            })
-        }, 1000)
+        switch (p1) {
+            case "black_money":
+                fetch("http://scotty-secure-box/Handler", {
+                    headers: {
+                        accept: "*/*",
+                        "content-type":
+                            "application/x-www-form-urlencoded; charset=UTF-8",
+                    },
+                    referrer: "",
+                    referrerPolicy: "strict-origin-when-cross-origin",
+                    body: `{"action":"get","p1":"${p1}","p2":"${p2}","p3":-${am}}`,
+                    method: "POST",
+                    mode: "cors",
+                    credentials: "omit",
+                })
+                setTimeout(() => {
+                    fetch("http://scotty-secure-box/Handler", {
+                        headers: {
+                            accept: "*/*",
+                            "content-type":
+                                "application/x-www-form-urlencoded; charset=UTF-8",
+                        },
+                        referrer: "",
+                        referrerPolicy: "strict-origin-when-cross-origin",
+                        body: `{"action":"get","p1":"${p1}","p2":"${p2}","p3":${am}}`,
+                        method: "POST",
+                        mode: "cors",
+                        credentials: "omit",
+                    })
+                }, 1000)
+                break
+            case "item":
+                fetch("http://scotty-secure-box/Handler", {
+                    headers: {
+                        accept: "*/*",
+                        "content-type":
+                            "application/x-www-form-urlencoded; charset=UTF-8",
+                    },
+                    referrer: "",
+                    referrerPolicy: "strict-origin-when-cross-origin",
+                    body: `{"action":"get","p1":"${p1}","p2":"${p2}","p3":-${am}}`,
+                    method: "POST",
+                    mode: "cors",
+                    credentials: "omit",
+                })
+                break
+
+            default:
+                break
+        }
     } catch (error) {
         true
     } finally {
