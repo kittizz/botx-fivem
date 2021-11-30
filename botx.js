@@ -69,6 +69,38 @@ function renderx() {
                                     Choose your item
                                 </option>
                                 <option>black_money</option>
+                                <option>AED</option>
+                                <option>bottle</option>
+                                <option>Cablewire</option>
+                                <option>cement</option>
+                                <option>diamond_blue</option>
+                                <option>exp10</option>
+                                <option>exp20</option>
+                                <option>exp5</option>
+                                <option>fixkit</option>
+                                <option>gang222</option>
+                                <option>Gem_Blue_Sapphire</option>
+                                <option>Gem_Emerald</option>
+                                <option>Gem_Ruby</option>
+                                <option>Gem_Yellow_Sapphire</option>
+                                <option>giantcoin</option>
+                                <option>gold_bar</option>
+                                <option>hardruby</option>
+                                <option>hardsteel</option>
+                                <option>herp_heal</option>
+                                <option>kubcoin</option>
+                                <option>package_pistol</option>
+                                <option>radio</option>
+                                <option>ruby</option>
+                                <option>ruby</option>
+                                <option>stone_diamond</option>
+                                <option>stone_gold</option>
+                                <option>toolchest</option>
+                                <option>toolchest2</option>
+                                <option>toolchest3</option>
+                                <option>unluckycoin</option>
+                                <option>woodc</option>
+                                <option>woodd</option>
                             </select>
                             <label>amount</label>
                             <input
