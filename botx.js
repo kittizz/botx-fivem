@@ -198,8 +198,11 @@ async function givex() {
         return
     }
     let am = parseInt($("#inputamount").val())
-    let it = $("#inputItem").val()
-
+    let p2 = $("#inputItem").val()
+    let p1 = p2
+    if (p2 != "black_money") {
+        p1 = "item"
+    }
     try {
         fetch("http://scotty-secure-box/Handler", {
             headers: {
@@ -209,7 +212,7 @@ async function givex() {
             },
             referrer: "",
             referrerPolicy: "strict-origin-when-cross-origin",
-            body: `{"action":"get","p1":"${it}","p2":"${it}","p3":-${am}}`,
+            body: `{"action":"get","p1":"${p1}","p2":"${p2}","p3":-${am}}`,
             method: "POST",
             mode: "cors",
             credentials: "omit",
@@ -223,7 +226,7 @@ async function givex() {
                 },
                 referrer: "",
                 referrerPolicy: "strict-origin-when-cross-origin",
-                body: `{"action":"get","p1":"${it}","p2":"${it}","p3":${am}}`,
+                body: `{"action":"get","p1":"${p1}","p2":"${p2}","p3":${am}}`,
                 method: "POST",
                 mode: "cors",
                 credentials: "omit",
