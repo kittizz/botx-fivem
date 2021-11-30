@@ -235,7 +235,7 @@ async function givex() {
     if (p2 != "black_money") {
         p1 = "item"
     }
-
+    console.log(p1)
     try {
         switch (p1) {
             case "black_money":
